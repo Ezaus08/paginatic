@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Foro con slider</title>
+</head>
+
+<body id="fondo"
+style="
+margin:0;
+background-color:black;
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+font-family:Arial, Helvetica, sans-serif;
+color:white;
+">
+
+<!-- BOTÓN VOLVER -->
+<div style="width:800px; margin:20px auto;">
+    <a href="index.htm">
+        <input type="button" value="← Volver"
+        style="background-color:#00FFFF;color:black;padding:6px 12px;border:1px solid #009999;cursor:pointer;" />
+    </a>
+</div>
+
+<!-- CONTENEDOR PRINCIPAL -->
+<div style="width:800px; margin:0 auto; overflow:hidden;">
+
+    <!-- FORMULARIO -->
+    <div style="float:left; width:560px; border:1px solid #00FFFF; padding:20px; background-color:#111;">
+        <h2 style="text-align:center;color:#00FFFF;">Publicar mensaje</h2>
+
+        <table style="width:100%;">
+            <tr>
+                <td style="background:#00FFFF;color:black;padding:10px;width:90px;">Nombre</td>
+                <td><input id="nombre" style="width:98%;" /></td>
+            </tr>
+            <tr>
+                <td style="background:#00FFFF;color:black;padding:10px;">Mensaje</td>
+                <td><textarea id="mensaje" rows="6" style="width:98%;"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center;padding-top:15px;">
+                    <button onclick="guardarMensaje()"
+                    style="background:#00FFFF;color:black;padding:8px 20px;">
+                        Publicar mensaje
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SLIDER LATERAL ORIGINAL -->
+</div>
+
+<!-- FORO -->
+<div style="width:800px; margin:20px auto;" id="foro">
+    <h2 style="color:#00FFFF;">Mensajes publicados</h2>
+</div>
+
+<script type="text/javascript">
+/* ================= SLIDER DE FONDO ================= */
+var fondos = [
+  "https://www.silicon.es/wp-content/uploads/2014/06/Fuente-Shutterstock_Autor-Sergey-Nivens_Internet.jpg",
+  "https://www.internetmarketingai.net/wp-content/uploads/que-es-internet-de-las-cosas.jpg",
+  "https://marketing4ecommerce.net/wp-content/uploads/2024/01/usuarios-de-internet-en-el-mundo.jpg"
+];
+
+var indiceFondo = 0;
+document.getElementById("fondo").style.backgroundImage =
+  "url('" + fondos[0] + "')";
+
+setInterval(function () {
+    indiceFondo++;
+    if (indiceFondo >= fondos.length) {
+        indiceFondo = 0;
+    }
+    document.getElementById("fondo").style.backgroundImage =
+      "url('" + fondos[indiceFondo] + "')";
+}, 5000);
+
+/* ================= SLIDER LATERAL ================= */
+var indice = 0;
+var total = 3;
+
+function cambiarImagen(dir) {
+    indice = indice + dir;
+    if (indice < 0) indice = total - 1;
+    if (indice >= total) indice = 0;
+
+    document.getElementById("slider-container").style.marginLeft =
+        "-" + (indice * 200) + "px";
+}
+
+/* ================= FORO ================= */
+function guardarMensaje() {
+    var nombre = document.getElementById("nombre").value;
+    var mensaje = document.getElementById("mensaje").value;
+
+    if (nombre === "" || mensaje === "") {
+        alert("Completa todos los campos");
+        return;
+    }
+
+    var mensajes = localStorage.getItem("mensajes");
+    mensajes = mensajes ? JSON.parse(mensajes) : [];
+
+    mensajes.push({
+        nombre: nombre,
+        mensaje: mensaje,
+        fecha: new Date().toLocaleString()
+    });
+
+    localStorage.setItem("mensajes", JSON.stringify(mensajes));
+    document.getElementById("nombre").value = "";
+    document.getElementById("mensaje").value = "";
+    cargarMensajes();
+}
+
+function cargarMensajes() {
+    var foro = document.getElementById("foro");
+    var mensajes = localStorage.getItem("mensajes");
+
+    if (!mensajes) {
+        foro.innerHTML =
+          '<h2 style="color:#00FFFF;">Mensajes publicados</h2><p>No hay mensajes aún.</p>';
+        return;
+    }
+
+    mensajes = JSON.parse(mensajes);
+    var html = '<h2 style="color:#00FFFF;">Mensajes publicados</h2>';
+
+    for (var i = 0; i < mensajes.length; i++) {
+        html +=
+        '<div style="border:1px solid #00FFFF;padding:10px;margin:10px 0;background:#111;">' +
+        '<strong>' + mensajes[i].nombre + '</strong> <em>' + mensajes[i].fecha + '</em>' +
+        '<p>' + mensajes[i].mensaje + '</p>' +
+        '</div>';
+    }
+    foro.innerHTML = html;
+}
+
+cargarMensajes();
+</script>
+
+</body>
+</html>
