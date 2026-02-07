@@ -1,19 +1,30 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Foro SharePoint 2007</title>
+<title>Foro con slider</title>
 </head>
 
-<body id="fondo" style="
-margin:0;
-background-color:black;
+<body id="fondo"
+<!-- CAPAS DE FONDO PARA TRANSICIÓN -->
+<div id="bg1" style="
+position:fixed;
+top:0; left:0;
+width:100%; height:100%;
 background-size:cover;
 background-position:center;
-background-repeat:no-repeat;
-font-family:Arial, Helvetica, sans-serif;
-color:white;
-">
+z-index:-2;
+"></div>
+
+<div id="bg2" style="
+position:fixed;
+top:0; left:0;
+width:100%; height:100%;
+background-size:cover;
+background-position:center;
+z-index:-3;
+opacity:0;
+"></div>
 
 <!-- BOTÓN VOLVER -->
 <div style="width:800px; margin:20px auto;">
@@ -23,28 +34,34 @@ color:white;
     </a>
 </div>
 
-<!-- FORMULARIO -->
-<div style="width:800px; margin:0 auto; border:1px solid #00FFFF; padding:20px; background:#111;">
-    <h2 style="text-align:center;color:#00FFFF;">Publicar mensaje</h2>
+<!-- CONTENEDOR PRINCIPAL -->
+<div style="width:800px; margin:0 auto; overflow:hidden;">
 
-    <table style="width:100%;">
-        <tr>
-            <td style="background:#00FFFF;color:black;padding:10px;width:90px;">Nombre</td>
-            <td><input id="nombre" style="width:98%;" /></td>
-        </tr>
-        <tr>
-            <td style="background:#00FFFF;color:black;padding:10px;">Mensaje</td>
-            <td><textarea id="mensaje" rows="6" style="width:98%;"></textarea></td>
-        </tr>
-        <tr>
-            <td colspan="2" style="text-align:center;padding-top:15px;">
-                <button onclick="guardarMensaje()"
-                style="background:#00FFFF;color:black;padding:8px 20px;">
-                    Publicar mensaje
-                </button>
-            </td>
-        </tr>
-    </table>
+    <!-- FORMULARIO -->
+    <div style="float:left; width:560px; border:1px solid #00FFFF; padding:20px; background-color:#111;">
+        <h2 style="text-align:center;color:#00FFFF;">Publicar mensaje</h2>
+
+        <table style="width:100%;">
+            <tr>
+                <td style="background:#00FFFF;color:black;padding:10px;width:90px;">Nombre</td>
+                <td><input id="nombre" style="width:98%;" /></td>
+            </tr>
+            <tr>
+                <td style="background:#00FFFF;color:black;padding:10px;">Mensaje</td>
+                <td><textarea id="mensaje" rows="6" style="width:98%;"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center;padding-top:15px;">
+                    <button onclick="guardarMensaje()"
+                    style="background:#00FFFF;color:black;padding:8px 20px;">
+                        Publicar mensaje
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- SLIDER LATERAL ORIGINAL -->
 </div>
 
 <!-- FORO -->
@@ -53,22 +70,52 @@ color:white;
 </div>
 
 <script type="text/javascript">
-/* ========= SLIDER DE FONDO ========= */
+/* ================= SLIDER DE FONDO ================= */
+/* ================= SLIDER DE FONDO CON TRANSICIÓN ================= */
 var fondos = [
   "https://www.silicon.es/wp-content/uploads/2014/06/Fuente-Shutterstock_Autor-Sergey-Nivens_Internet.jpg",
   "https://www.internetmarketingai.net/wp-content/uploads/que-es-internet-de-las-cosas.jpg",
   "https://marketing4ecommerce.net/wp-content/uploads/2024/01/usuarios-de-internet-en-el-mundo.jpg"
 ];
 
-var iFondo = 0;
-document.body.style.backgroundImage = "url('" + fondos[0] + "')";
+var indiceFondo = 0;
+var capaActual = 1;
+
+document.getElementById("bg1").style.backgroundImage = "url('" + fondos[0] + "')";
 
 setInterval(function () {
-    iFondo = (iFondo + 1) % fondos.length;
-    document.body.style.backgroundImage = "url('" + fondos[iFondo] + "')";
+
+    indiceFondo++;
+    if (indiceFondo >= fondos.length) indiceFondo = 0;
+
+    var nueva = (capaActual === 1) ? document.getElementById("bg2") : document.getElementById("bg1");
+    var vieja = (capaActual === 1) ? document.getElementById("bg1") : document.getElementById("bg2");
+
+    nueva.style.backgroundImage = "url('" + fondos[indiceFondo] + "')";
+    nueva.style.transition = "opacity 1.5s";
+    vieja.style.transition = "opacity 1.5s";
+
+    nueva.style.opacity = 1;
+    vieja.style.opacity = 0;
+
+    capaActual = (capaActual === 1) ? 2 : 1;
+
 }, 5000);
 
-/* ========= GUARDAR MENSAJE ========= */
+/* ================= SLIDER LATERAL ================= */
+var indice = 0;
+var total = 3;
+
+function cambiarImagen(dir) {
+    indice = indice + dir;
+    if (indice < 0) indice = total - 1;
+    if (indice >= total) indice = 0;
+
+    document.getElementById("slider-container").style.marginLeft =
+        "-" + (indice * 200) + "px";
+}
+
+/* ================= FORO ================= */
 function guardarMensaje() {
     var nombre = document.getElementById("nombre").value;
     var mensaje = document.getElementById("mensaje").value;
@@ -78,82 +125,42 @@ function guardarMensaje() {
         return;
     }
 
-    var soap =
-    '<?xml version="1.0" encoding="utf-8"?>' +
-    '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
-    'xmlns:xsd="http://www.w3.org/2001/XMLSchema" ' +
-    'xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">' +
-    '<soap:Body>' +
-    '<UpdateListItems xmlns="http://schemas.microsoft.com/sharepoint/soap/">' +
-    '<listName>ForoMensajes</listName>' +
-    '<updates>' +
-    '<Batch OnError="Continue">' +
-    '<Method ID="1" Cmd="New">' +
-    '<Field Name="Title">' + nombre + '</Field>' +
-    '<Field Name="Mensaje">' + mensaje + '</Field>' +
-    '</Method>' +
-    '</Batch>' +
-    '</updates>' +
-    '</UpdateListItems>' +
-    '</soap:Body>' +
-    '</soap:Envelope>';
+    var mensajes = localStorage.getItem("mensajes");
+    mensajes = mensajes ? JSON.parse(mensajes) : [];
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/_vti_bin/Lists.asmx", true);
-    xhr.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
-    xhr.setRequestHeader("SOAPAction",
-      "http://schemas.microsoft.com/sharepoint/soap/UpdateListItems");
+    mensajes.push({
+        nombre: nombre,
+        mensaje: mensaje,
+        fecha: new Date().toLocaleString()
+    });
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            document.getElementById("nombre").value = "";
-            document.getElementById("mensaje").value = "";
-            cargarMensajes();
-        }
-    };
-    xhr.send(soap);
+    localStorage.setItem("mensajes", JSON.stringify(mensajes));
+    document.getElementById("nombre").value = "";
+    document.getElementById("mensaje").value = "";
+    cargarMensajes();
 }
 
-/* ========= CARGAR MENSAJES ========= */
 function cargarMensajes() {
+    var foro = document.getElementById("foro");
+    var mensajes = localStorage.getItem("mensajes");
 
-    var soap =
-    '<?xml version="1.0" encoding="utf-8"?>' +
-    '<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' +
-    'xmlns:xsd="http://www.w3.org/2001/XMLSchema" ' +
-    'xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">' +
-    '<soap:Body>' +
-    '<GetListItems xmlns="http://schemas.microsoft.com/sharepoint/soap/">' +
-    '<listName>ForoMensajes</listName>' +
-    '</GetListItems>' +
-    '</soap:Body>' +
-    '</soap:Envelope>';
+    if (!mensajes) {
+        foro.innerHTML =
+          '<h2 style="color:#00FFFF;">Mensajes publicados</h2><p>No hay mensajes aún.</p>';
+        return;
+    }
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/_vti_bin/Lists.asmx", true);
-    xhr.setRequestHeader("Content-Type", "text/xml; charset=utf-8");
-    xhr.setRequestHeader("SOAPAction",
-      "http://schemas.microsoft.com/sharepoint/soap/GetListItems");
+    mensajes = JSON.parse(mensajes);
+    var html = '<h2 style="color:#00FFFF;">Mensajes publicados</h2>';
 
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-
-            var xml = xhr.responseXML;
-            var rows = xml.getElementsByTagName("z:row");
-            var html = '<h2 style="color:#00FFFF;">Mensajes publicados</h2>';
-
-            for (var i = rows.length - 1; i >= 0; i--) {
-                html +=
-                '<div style="border:1px solid #00FFFF;padding:10px;margin:10px 0;background:#111;">' +
-                '<strong>' + rows[i].getAttribute("ows_Title") + '</strong>' +
-                '<p>' + rows[i].getAttribute("ows_Mensaje") + '</p>' +
-                '</div>';
-            }
-
-            document.getElementById("foro").innerHTML = html;
-        }
-    };
-    xhr.send(soap);
+    for (var i = 0; i < mensajes.length; i++) {
+        html +=
+        '<div style="border:1px solid #00FFFF;padding:10px;margin:10px 0;background:#111;">' +
+        '<strong>' + mensajes[i].nombre + '</strong> <em>' + mensajes[i].fecha + '</em>' +
+        '<p>' + mensajes[i].mensaje + '</p>' +
+        '</div>';
+    }
+    foro.innerHTML = html;
 }
 
 cargarMensajes();
@@ -161,4 +168,3 @@ cargarMensajes();
 
 </body>
 </html>
-

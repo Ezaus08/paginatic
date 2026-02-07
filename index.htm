@@ -1,17 +1,8 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 
-<script type="text/javascript">
-function actualizarReloj() {
-	const ahora = new Date();
-	const fecha = ahora.toLocaleDateString('es-ES');
-	const hora = ahora.toLocaleTimeString('es-ES');
-	document.getElementById("reloj").innerHTML = fecha + " | " + hora;
-}
-setInterval(actualizarReloj, 1000);
-</script>
-
-&nbsp;<style type="text/css">
+<head>
+<style type="text/css">
 #fondoSP {
   position: absolute;
   top: 0;
@@ -23,27 +14,7 @@ setInterval(actualizarReloj, 1000);
   /* Fusión compatible IE */
   filter: alpha(opacity=60);
 }
-</style><script type="text/javascript">
-function contadorVisitas() {
-	let visitas = localStorage.getItem("contador_visitas");
-	if (visitas === null) {
-		visitas = 1;
-	} else {
-		visitas = parseInt(visitas) + 1;
-	}
-	localStorage.setItem("contador_visitas", visitas);
-	document.getElementById("contador-visitas").innerHTML =
-		"Visitas: " + visitas;
-}
-</script><script type="text/javascript">
-function mostrarMenu(id) {
-  document.getElementById(id).style.display = "block";
-}
-
-function ocultarMenu(id) {
-  document.getElementById(id).style.display = "none";
-}
-</script><style type="text/css">
+</style><style type="text/css">
 
 /* ===== SLIDER DE FONDO ===== */
 body {
@@ -111,7 +82,91 @@ body {
 .carrusel input:last-of-type {
 	right: 5px;
 }
-</style><head><style type="text/css">
+</style>
+
+<style type="text/css">
+#fondoSP {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  /* Fusión compatible IE */
+  filter: alpha(opacity=60);
+}
+</style><style type="text/css">
+
+/* ===== SLIDER DE FONDO ===== */
+body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 1s ease-in-out;
+}
+<script type="text/javascript">
+var fondos = [
+  "Carlos.jpg",
+  "imagenes-chachi-chula/coraline-dad-type.gif",
+  "imagenes-chachi-chula/donkey-kong-dance.gif"
+];
+
+var fondoActual = 0;
+
+function cambiarFondo() {
+  document.body.style.backgroundImage =
+    "url('" + fondos[fondoActual] + "')";
+  fondoActual = (fondoActual + 1) % fondos.length;
+}
+
+cambiarFondo();
+setInterval(cambiarFondo, 5000);
+</script>
+body {
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-color: #000000;
+}
+
+/* --- CARRUSEL DE FOTOS --- */
+.carrusel {
+	width: 500px;
+	margin: 20px auto;
+	position: relative;
+	overflow: hidden;
+	border: 3px solid #00FFFF;
+	background-color: #000000;
+}
+
+.carrusel-img {
+	width: 500px;
+	height: 300px;
+	display: none;
+}
+
+.carrusel input {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: #008080;
+	color: #FFFFFF;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	padding: 6px 10px;
+}
+
+.carrusel input:first-of-type {
+	left: 5px;
+}
+
+.carrusel input:last-of-type {
+	right: 5px;
+}
+</style>
+
+<style type="text/css">
 /* --- RELOJ --- */
 #reloj {
 	font-size: 14pt;
@@ -165,33 +220,25 @@ body {
 .style17 {
 	background-color: #000000;
 }
-</style><script type="text/javascript">
-<!--
-function FP_swapImg() {//v1.0
- var doc=document,args=arguments,elm,n; doc.$imgSwaps=new Array(); for(n=2; n<args.length;
- n+=2) { elm=FP_getObjectByID(args[n]); if(elm) { doc.$imgSwaps[doc.$imgSwaps.length]=elm;
- elm.$src=elm.src; elm.src=args[n+1]; } }
-}
+</style>
 
-function FP_preloadImgs() {//v1.0
- var d=document,a=arguments; if(!d.FP_imgs) d.FP_imgs=new Array();
- for(var i=0; i<a.length; i++) { d.FP_imgs[i]=new Image; d.FP_imgs[i].src=a[i]; }
+<script type="text/javascript">
+function actualizarReloj() {
+	const ahora = new Date();
+	const fecha = ahora.toLocaleDateString('es-ES');
+	const hora = ahora.toLocaleTimeString('es-ES');
+	document.getElementById("reloj").innerHTML = fecha + " | " + hora;
 }
+setInterval(actualizarReloj, 1000);
+</script>
 
-function FP_getObjectByID(id,o) {//v1.0
- var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
- else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
- if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
- for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
- f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
- for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
- return null;
-}
-// -->
-</script></head><body style="background-color: #000000"
-onload="FP_preloadImgs(/*url*/'button26.gif',/*url*/'button27.gif',/*url*/'button2F.gif',/*url*/'button30.gif',/*url*/'button32.gif',/*url*/'button33.gif',/*url*/'button44.gif',/*url*/'button45.gif',/*url*/'button47.gif',/*url*/'button48.gif',/*url*/'button4A.gif',/*url*/'button4B.gif',/*url*/'button4D.gif',/*url*/'button4E.gif',/*url*/'button50.gif',/*url*/'button51.gif',/*url*/'button53.gif',/*url*/'button54.gif',/*url*/'button8.gif',/*url*/'button9.gif'); contadorVisitas()"><table style="width: 1200px; height: 600px" align="center">
+</head>
+
+<body style="background-color: #000000"
+onload="FP_preloadImgs(/*url*/'button26.gif',/*url*/'button27.gif',/*url*/'button2F.gif',/*url*/'button30.gif',/*url*/'button32.gif',/*url*/'button33.gif',/*url*/'button44.gif',/*url*/'button45.gif',/*url*/'button47.gif',/*url*/'button48.gif',/*url*/'button4A.gif',/*url*/'button4B.gif',/*url*/'button4D.gif',/*url*/'button4E.gif',/*url*/'button50.gif',/*url*/'button51.gif',/*url*/'button53.gif',/*url*/'button54.gif',/*url*/'button8.gif',/*url*/'button9.gif'); contadorVisitas()">
+<table style="width: 1200px; height: 600px" align="center">
 	<tr>
-		<td style="height: 0; position: relative;" colspan="2" class="style1">
+		<td style="height: 0; position: relative;" colspan="2" class="style1" valign="top">
 	INTERNET
 	<div id="reloj"></div>
 </td>
@@ -465,6 +512,41 @@ setInterval(siguiente, 4000);
 </style>
 	</table>
 <div id="contador-visitas">Visitas: 0</div>
+<script type="text/javascript">
+(function () {
+
+  function contadorVisitasSeguro() {
+    try {
+      var visitas = localStorage.getItem("contador_visitas");
+
+      if (visitas === null) {
+        visitas = 1;
+      } else {
+        visitas = parseInt(visitas, 10) + 1;
+      }
+
+      localStorage.setItem("contador_visitas", visitas);
+
+      var el = document.getElementById("contador-visitas");
+      if (el) {
+        el.innerHTML = "Visitas: " + visitas;
+      }
+    } catch(e) {}
+  }
+
+  /* Espera a que todo exista sin tocar tu onload */
+  if (document.readyState === "complete") {
+    contadorVisitasSeguro();
+  } else if (window.attachEvent) {
+    window.attachEvent("onload", contadorVisitasSeguro); // IE viejo
+  } else {
+    window.addEventListener("load", contadorVisitasSeguro, false);
+  }
+
+})();
+</script>
+
+</body>
 </body>
 
 </html>

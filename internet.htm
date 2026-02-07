@@ -1,43 +1,7 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 
-<script type="text/javascript">
-<!--
-function FP_preloadImgs() {//v1.0
- var d=document,a=arguments; if(!d.FP_imgs) d.FP_imgs=new Array();
- for(var i=0; i<a.length; i++) { d.FP_imgs[i]=new Image; d.FP_imgs[i].src=a[i]; }
-}
-
-function FP_swapImg() {//v1.0
- var doc=document,args=arguments,elm,n; doc.$imgSwaps=new Array(); for(n=2; n<args.length;
- n+=2) { elm=FP_getObjectByID(args[n]); if(elm) { doc.$imgSwaps[doc.$imgSwaps.length]=elm;
- elm.$src=elm.src; elm.src=args[n+1]; } }
-}
-
-function FP_getObjectByID(id,o) {//v1.0
- var c,el,els,f,m,n; if(!o)o=document; if(o.getElementById) el=o.getElementById(id);
- else if(o.layers) c=o.layers; else if(o.all) el=o.all[id]; if(el) return el;
- if(o.id==id || o.name==id) return o; if(o.childNodes) c=o.childNodes; if(c)
- for(n=0; n<c.length; n++) { el=FP_getObjectByID(id,c[n]); if(el) return el; }
- f=o.forms; if(f) for(n=0; n<f.length; n++) { els=f[n].elements;
- for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
- return null;
-}
-// -->
-</script>
-
-
-<script type="text/javascript">
-function actualizarReloj() {
-	const ahora = new Date();
-	const fecha = ahora.toLocaleDateString('es-ES');
-	const hora = ahora.toLocaleTimeString('es-ES');
-	document.getElementById("reloj").innerHTML = fecha + " | " + hora;
-}
-setInterval(actualizarReloj, 1000);
-</script>
-
-&nbsp;<style type="text/css">
+<style type="text/css">
 #fondoSP {
   position: absolute;
   top: 0;
@@ -49,27 +13,7 @@ setInterval(actualizarReloj, 1000);
   /* Fusión compatible IE */
   filter: alpha(opacity=60);
 }
-</style><script type="text/javascript">
-function contadorVisitas() {
-	let visitas = localStorage.getItem("contador_visitas");
-	if (visitas === null) {
-		visitas = 1;
-	} else {
-		visitas = parseInt(visitas) + 1;
-	}
-	localStorage.setItem("contador_visitas", visitas);
-	document.getElementById("contador-visitas").innerHTML =
-		"Visitas: " + visitas;
-}
-</script><script type="text/javascript">
-function mostrarMenu(id) {
-  document.getElementById(id).style.display = "block";
-}
-
-function ocultarMenu(id) {
-  document.getElementById(id).style.display = "none";
-}
-</script><style type="text/css">
+</style><style type="text/css">
 
 /* ===== SLIDER DE FONDO ===== */
 body {
@@ -137,7 +81,9 @@ body {
 .carrusel input:last-of-type {
 	right: 5px;
 }
-</style><head><style type="text/css">
+</style>
+
+<style type="text/css">
 /* --- RELOJ --- */
 #reloj {
 	font-size: 14pt;
@@ -188,11 +134,17 @@ body {
 .style15 {
 	background-color: #008080;
 }
-.style17 {
-	background-color: #000000;
+</style>
+
+<script type="text/javascript">
+function actualizarReloj() {
+	const ahora = new Date();
+	const fecha = ahora.toLocaleDateString('es-ES');
+	const hora = ahora.toLocaleTimeString('es-ES');
+	document.getElementById("reloj").innerHTML = fecha + " | " + hora;
 }
-</style><script type="text/javascript">
-<!--
+setInterval(actualizarReloj, 1000);
+
 function FP_swapImg() {//v1.0
  var doc=document,args=arguments,elm,n; doc.$imgSwaps=new Array(); for(n=2; n<args.length;
  n+=2) { elm=FP_getObjectByID(args[n]); if(elm) { doc.$imgSwaps[doc.$imgSwaps.length]=elm;
@@ -213,9 +165,10 @@ function FP_getObjectByID(id,o) {//v1.0
  for(m=0; m<els.length; m++){ el=FP_getObjectByID(id,els[n]); if(el) return el; } }
  return null;
 }
-// -->
-</script></head><body style="background-color: #000000"
-onload="FP_preloadImgs(/*url*/'button26.gif',/*url*/'button27.gif',/*url*/'button2F.gif',/*url*/'button30.gif',/*url*/'button32.gif',/*url*/'button33.gif',/*url*/'button44.gif',/*url*/'button45.gif',/*url*/'button47.gif',/*url*/'button48.gif',/*url*/'button4A.gif',/*url*/'button4B.gif',/*url*/'button4D.gif',/*url*/'button4E.gif',/*url*/'button50.gif',/*url*/'button51.gif',/*url*/'button53.gif',/*url*/'button54.gif',/*url*/'button8.gif',/*url*/'button9.gif',/*url*/'buttonD10.gif',/*url*/'buttonE1.gif',/*url*/'button205.gif',/*url*/'button206.gif'); contadorVisitas()"><table style="width: 1200px; height: 600px" align="center">
+</script>
+
+<body style="background-color: #000000"
+onload="FP_preloadImgs(/*url*/'button26.gif',/*url*/'button27.gif',/*url*/'button2F.gif',/*url*/'button30.gif',/*url*/'button32.gif',/*url*/'button33.gif',/*url*/'button44.gif',/*url*/'button45.gif',/*url*/'button47.gif',/*url*/'button48.gif',/*url*/'button4A.gif',/*url*/'button4B.gif',/*url*/'button4D.gif',/*url*/'button4E.gif',/*url*/'button50.gif',/*url*/'button51.gif',/*url*/'button53.gif',/*url*/'button54.gif',/*url*/'button8.gif',/*url*/'button9.gif',/*url*/'buttonF12.gif',/*url*/'button218.gif',/*url*/'button219.gif',/*url*/'button220.gif'); contadorVisitas()"><table style="width: 1200px; height: 600px" align="center">
 	<tr>
 		<td style="height: 0; position: relative;" colspan="2" class="style1">
 	INTERNET
@@ -230,7 +183,7 @@ onload="FP_preloadImgs(/*url*/'button26.gif',/*url*/'button27.gif',/*url*/'butto
 				<td style="width: 50px; height: 0" valign="top">MENÚ</td>
 			</tr>
 			<tr>
-				<td style="width: 50px; height: 0" class="style15" valign="top">
+				<td style="width: 50px; height: 0" class="style2" valign="top">
 				<a href="index.htm">
 					<img style="border: 0" id="img9" src="button25.gif" height="20" width="100" alt="INICIO" onmouseover="FP_swapImg(1,0,/*id*/'img9',/*url*/'button26.gif')" onmouseout="FP_swapImg(0,0,/*id*/'img9',/*url*/'button25.gif')" onmousedown="FP_swapImg(1,0,/*id*/'img9',/*url*/'button27.gif')" onmouseup="FP_swapImg(0,0,/*id*/'img9',/*url*/'button26.gif')" align="top" /><!-- MSComment="ibutton" fp-style="fp-btn: Simple Block 1; fp-font: Times New Roman, Times, serif; fp-font-style: Bold; fp-font-size: 9; fp-bgcolor: #008080; fp-transparent: 1" fp-title="INICIO" --></a></td>
 			</tr>
@@ -240,7 +193,7 @@ onload="FP_preloadImgs(/*url*/'button26.gif',/*url*/'button27.gif',/*url*/'butto
 					<img style="border: 0" id="img25" src="button31.gif" height="20" width="100" alt="Historia" onmouseover="FP_swapImg(1,0,/*id*/'img25',/*url*/'button32.gif')" onmouseout="FP_swapImg(0,0,/*id*/'img25',/*url*/'button31.gif')" onmousedown="FP_swapImg(1,0,/*id*/'img25',/*url*/'button33.gif')" onmouseup="FP_swapImg(0,0,/*id*/'img25',/*url*/'button32.gif')" align="top" /><!-- MSComment="ibutton" fp-style="fp-btn: Simple Block 1; fp-font: Times New Roman, Times, serif; fp-font-style: Bold; fp-font-size: 9; fp-bgcolor: #00FFFF; fp-transparent: 1" fp-title="Historia" --></a></td>
 			</tr>
 			<tr>
-				<td style="width: 100px; height: 0" valign="top">
+				<td style="width: 100px; height: 0" valign="top" class="style15">
 
   <a href="internet.htm"
      onmouseover="mostrarMenu('menuTarjeta');"
@@ -387,11 +340,23 @@ onload="FP_preloadImgs(/*url*/'button26.gif',/*url*/'button27.gif',/*url*/'butto
 		</td>
 		<td style="width: 950px; height: 400px" class="style13" valign="top">
 		<p class="style14">&nbsp;</p>
-      <o:p><a href="default3.htm">
-		<img style="border: 0" id="img27" src="buttonC1.gif" height="33" width="165" alt="MÓDEM" onmouseover="FP_swapImg(1,0,/*id*/'img27',/*url*/'buttonD10.gif')" onmouseout="FP_swapImg(0,0,/*id*/'img27',/*url*/'buttonC1.gif')" onmousedown="FP_swapImg(1,0,/*id*/'img27',/*url*/'buttonE1.gif')" onmouseup="FP_swapImg(0,0,/*id*/'img27',/*url*/'buttonD10.gif')" /><!-- MSComment="ibutton" fp-style="fp-btn: Border Left 8; fp-transparent: 1" fp-title="MÓDEM" --></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </o:p>
+		<p class="style14">
+	<br />
+		<p class="style14">
+		&nbsp;<p class="style14">
+		&nbsp;<br />
+	<br />
+	<br />
+	<o:p><span lang="es">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<br />
+	<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</span><a href="default3.htm">
+		<img style="border: 0" id="img27" src="buttonE2.gif" height="45" width="225" alt="MÓDEM" onmouseover="FP_swapImg(1,0,/*id*/'img27',/*url*/'buttonF12.gif')" onmouseout="FP_swapImg(0,0,/*id*/'img27',/*url*/'buttonE2.gif')" onmousedown="FP_swapImg(1,0,/*id*/'img27',/*url*/'button218.gif')" onmouseup="FP_swapImg(0,0,/*id*/'img27',/*url*/'buttonF12.gif')" /><!-- MSComment="ibutton" fp-style="fp-btn: Border Left 8; fp-transparent: 1" fp-title="MÓDEM" --></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </o:p>
       <o:p><a href="def4.htm">
-		<img style="border: 0" id="img28" src="buttonF10.gif" height="33" width="165" alt="TARJETA" onmouseover="FP_swapImg(1,0,/*id*/'img28',/*url*/'button205.gif')" onmouseout="FP_swapImg(0,0,/*id*/'img28',/*url*/'buttonF10.gif')" onmousedown="FP_swapImg(1,0,/*id*/'img28',/*url*/'button206.gif')" onmouseup="FP_swapImg(0,0,/*id*/'img28',/*url*/'button205.gif')" /><!-- MSComment="ibutton" fp-style="fp-btn: Border Left 8; fp-transparent: 1" fp-title="TARJETA" --></a>&nbsp;</o:p><p class="style14">
+		<img style="border: 0" id="img28" src="button221.gif" height="45" width="225" alt="TARJETA DE RED" onmouseover="FP_swapImg(1,0,/*id*/'img28',/*url*/'button219.gif')" onmouseout="FP_swapImg(0,0,/*id*/'img28',/*url*/'button221.gif')" onmousedown="FP_swapImg(1,0,/*id*/'img28',/*url*/'button220.gif')" onmouseup="FP_swapImg(0,0,/*id*/'img28',/*url*/'button219.gif')" /><!-- MSComment="ibutton" fp-style="fp-btn: Border Left 8; fp-transparent: 1" fp-title="TARJETA DE RED" --></a> </o:p>
 		<o:p>&nbsp;</o:p><br />
+		<br />
 		<br />
 		<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- ======= CARRUSEL DE FOTOS ======= -->
@@ -466,15 +431,111 @@ setInterval(siguiente, 4000);
 .carrusel input:last-of-type {
   right: 5px;
 }
-.style18 {
-	vertical-align: middle;
-}
-.style19 {
-	text-align: center;
-}
 </style>
 	</table>
 <div id="contador-visitas">Visitas: 0</div>
+<p>&nbsp;<style type="text/css">
+#fondoSP {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  /* Fusión compatible IE */
+  filter: alpha(opacity=60);
+}
+</style><script type="text/javascript">
+function contadorVisitas() {
+	let visitas = localStorage.getItem("contador_visitas");
+	if (visitas === null) {
+		visitas = 1;
+	} else {
+		visitas = parseInt(visitas) + 1;
+	}
+	localStorage.setItem("contador_visitas", visitas);
+	document.getElementById("contador-visitas").innerHTML =
+		"Visitas: " + visitas;
+}
+</script><script type="text/javascript">
+function mostrarMenu(id) {
+  document.getElementById(id).style.display = "block";
+}
+
+function ocultarMenu(id) {
+  document.getElementById(id).style.display = "none";
+}
+</script><style type="text/css">
+
+/* ===== SLIDER DE FONDO ===== */
+body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 1s ease-in-out;
+}
+<script type="text/javascript">
+var fondos = [
+  "Carlos.jpg",
+  "imagenes-chachi-chula/coraline-dad-type.gif",
+  "imagenes-chachi-chula/donkey-kong-dance.gif"
+];
+
+var fondoActual = 0;
+
+function cambiarFondo() {
+  document.body.style.backgroundImage =
+    "url('" + fondos[fondoActual] + "')";
+  fondoActual = (fondoActual + 1) % fondos.length;
+}
+
+cambiarFondo();
+setInterval(cambiarFondo, 5000);
+</script>
+body {
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-color: #000000;
+}
+
+/* --- CARRUSEL DE FOTOS --- */
+.carrusel {
+	width: 500px;
+	margin: 20px auto;
+	position: relative;
+	overflow: hidden;
+	border: 3px solid #00FFFF;
+	background-color: #000000;
+}
+
+.carrusel-img {
+	width: 500px;
+	height: 300px;
+	display: none;
+}
+
+.carrusel input {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: #008080;
+	color: #FFFFFF;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	padding: 6px 10px;
+}
+
+.carrusel input:first-of-type {
+	left: 5px;
+}
+
+.carrusel input:last-of-type {
+	right: 5px;
+}
+</style><head></head><body style="background-color: #000000"
+onload="FP_preloadImgs(/*url*/'button26.gif',/*url*/'button27.gif',/*url*/'button2F.gif',/*url*/'button30.gif',/*url*/'button32.gif',/*url*/'button33.gif',/*url*/'button44.gif',/*url*/'button45.gif',/*url*/'button47.gif',/*url*/'button48.gif',/*url*/'button4A.gif',/*url*/'button4B.gif',/*url*/'button4D.gif',/*url*/'button4E.gif',/*url*/'button50.gif',/*url*/'button51.gif',/*url*/'button53.gif',/*url*/'button54.gif',/*url*/'button8.gif',/*url*/'button9.gif',/*url*/'buttonF12.gif',/*url*/'button218.gif',/*url*/'button219.gif',/*url*/'button220.gif'); contadorVisitas()"></body></p>
 </body>
 
 </html>
