@@ -153,13 +153,14 @@ function cargarMensajes() {
     mensajes = JSON.parse(mensajes);
     var html = '<h2 style="color:#00FFFF;">Mensajes publicados</h2>';
 
-    for (var i = 0; i < mensajes.length; i++) {
-        html +=
-        '<div style="border:1px solid #00FFFF;padding:10px;margin:10px 0;background:#111;">' +
-        '<strong>' + mensajes[i].nombre + '</strong> <em>' + mensajes[i].fecha + '</em>' +
-        '<p>' + mensajes[i].mensaje + '</p>' +
-        '</div>';
-    }
+   for (var i = 0; i < mensajes.length; i++) {
+    html +=
+    '<div style="border:1px solid #00FFFF;padding:10px;margin:10px 0;background:#111;">' +
+    '<strong style="color:#00FFFF;">' + mensajes[i].nombre + '</strong> ' +
+    '<em style="color:white;">' + mensajes[i].fecha + '</em>' +
+    '<p style="color:white;">' + mensajes[i].mensaje + '</p>' +
+    '</div>';
+}
     foro.innerHTML = html;
 }
 
