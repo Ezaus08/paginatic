@@ -93,18 +93,6 @@ body {
 	top: 15px;
 	font-family: Arial, sans-serif;
 }
-</style><style type="text/css">
-#contador-visitas {
-	position: fixed;
-	bottom: 10px;
-	right: 15px;
-	background-color: #00FFFF;
-	color: #000000;
-	padding: 6px 12px;
-	font-size: 12pt;
-	font-family: Arial, sans-serif;
-	border-radius: 6px;
-}
 </style><meta http-equiv="Content-Language" content="es" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><style type="text/css">
 .style1 {
 	font-size: 40pt;
@@ -447,19 +435,7 @@ setInterval(siguiente, 4000);
   /* Fusión compatible IE */
   filter: alpha(opacity=60);
 }
-</style><script type="text/javascript">
-function contadorVisitas() {
-	let visitas = localStorage.getItem("contador_visitas");
-	if (visitas === null) {
-		visitas = 1;
-	} else {
-		visitas = parseInt(visitas) + 1;
-	}
-	localStorage.setItem("contador_visitas", visitas);
-	document.getElementById("contador-visitas").innerHTML =
-		"Visitas: " + visitas;
-}
-</script><script type="text/javascript">
+<script type="text/javascript">
 function mostrarMenu(id) {
   document.getElementById(id).style.display = "block";
 }
